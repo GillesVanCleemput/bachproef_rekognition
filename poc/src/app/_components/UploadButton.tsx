@@ -12,13 +12,30 @@ export function UploadButton() {
   const webcamRef = useRef<Webcam | null>(null);
 
   const uploadMutation = api.s3.uploadFile.useMutation({
-    onSuccess: () => {
+    onSuccess: (data) => {
+      console.log("Upload successful:", data);
+      alert(`Image uploaded and indexed successfully. Collection ID: ${data.collectionId}. JobId == ${data.jobId}.`);
       setTimeout(() => {
         closeModal();
       }, 1000);
     },
     onError: (error) => {
       console.error("Upload failed:", error);
+      alert("Upload failed. Please try again.");
+    },
+  });
+  
+  const transcodeMutation = api.media.transcodeMedia.useMutation({
+    onSuccess: (data) => {
+      console.log("Transcoding successful:", data);
+      alert(`Transcoding successful. Job ID: ${data.jobId}`);
+      setTimeout(() => {
+        closeModal();
+      }, 1000);
+    },
+    onError: (error) => {
+      console.error("Transcoding failed:", error);
+      alert("Transcoding failed. Please try again.");
     },
   });
 
@@ -50,6 +67,7 @@ export function UploadButton() {
   const handleUpload = async () => {
     try {
       if (file) {
+        // Convert file to Base64
         const base64Data = await new Promise<string>((resolve) => {
           const reader = new FileReader();
           reader.onloadend = () => resolve(reader.result as string);
@@ -62,6 +80,7 @@ export function UploadButton() {
           mimetype: file.type,
         });
       } else if (imageSrc) {
+        // Upload the captured image
         await uploadMutation.mutateAsync({
           base64Data: imageSrc,
           filename: `captured-${Date.now()}.jpg`,
@@ -147,7 +166,7 @@ export function UploadButton() {
               <button
                 onClick={closeModal}
                 className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
-                disabled={uploadMutation.status === "loading"}
+                disabled={uploadMutation.status == "pending"}
               >
                 Cancel
               </button>
@@ -155,9 +174,9 @@ export function UploadButton() {
                 <button
                   onClick={handleUpload}
                   className="px-4 py-2 bg-purple-700 text-white rounded-md hover:bg-purple-800 disabled:bg-purple-500 disabled:cursor-not-allowed"
-                  disabled={uploadMutation.status === "loading"}
+                  disabled={uploadMutation.status == "pending"}
                 >
-                  {uploadMutation.status === "loading" ? (
+                  {uploadMutation.status == "pending" ? (
                     <span className="flex items-center">
                       <svg
                         className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

@@ -9,9 +9,14 @@ export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
     AWS_REGION: z.string(),
+    AWS_REGION_TRANSCODE : z.string(),
     AWS_BUCKET: z.string(),
     AWS_ACCESS_KEY_ID: z.string(),
     AWS_SECRET_ACCESS_KEY: z.string(),
+    AWS_SNS_TOPIC_ARN : z.string(),
+    AWS_REKOGNITION_ROLE_ARN : z.string(),
+    AWS_TRANSCODER_PIPELINE_ID: z.string(),
+    AWS_TRANSCODER_PRESET_ID: z.string(),
   },
 
   /**
@@ -30,9 +35,15 @@ export const env = createEnv({
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     AWS_REGION: process.env.AWS_REGION,
+    AWS_REGION_TRANSCODE: process.env.AWS_REGION_TRANSCODE,
     AWS_BUCKET: process.env.AWS_BUCKET,
     AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
     AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
+    AWS_SNS_TOPIC_ARN : process.env.AWS_SNS_TOPIC_ARN,
+    AWS_REKOGNITION_ROLE_ARN : process.env.AWS_REKOGNITION_ROLE_ARN,
+    AWS_TRANSCODER_PIPELINE_ID: process.env.AWS_TRANSCODER_PIPELINE_ID,
+    AWS_TRANSCODER_PRESET_ID: process.env.AWS_TRANSCODER_PRESET_ID,
+
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

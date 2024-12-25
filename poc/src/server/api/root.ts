@@ -8,6 +8,7 @@ import { s3Router } from "./routers/s3";
  */
 export const appRouter = createTRPCRouter({
   s3: s3Router,
+
 });
 
 // export type definition of API
