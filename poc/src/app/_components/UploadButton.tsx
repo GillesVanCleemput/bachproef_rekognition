@@ -25,19 +25,6 @@ export function UploadButton() {
     },
   });
   
-  const transcodeMutation = api.media.transcodeMedia.useMutation({
-    onSuccess: (data) => {
-      console.log("Transcoding successful:", data);
-      alert(`Transcoding successful. Job ID: ${data.jobId}`);
-      setTimeout(() => {
-        closeModal();
-      }, 1000);
-    },
-    onError: (error) => {
-      console.error("Transcoding failed:", error);
-      alert("Transcoding failed. Please try again.");
-    },
-  });
 
   const openModal = () => setIsModalOpen(true);
 

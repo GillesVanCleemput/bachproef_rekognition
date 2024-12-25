@@ -173,9 +173,9 @@ export const s3Router = createTRPCRouter({
           accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
           secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
         },
-        region: process.env.AWS_REGION,
+        region: process.env.AWS_REGION_TRANSCODE,
+        endpoint: `https://elastictranscoder.${process.env.AWS_REGION_TRANSCODE}.amazonaws.com`, // Explicit endpoint
       });
-
       const transcoderJob = await transcoderClient.send(
         new CreateJobCommand({
           PipelineId: process.env.AWS_TRANSCODER_PIPELINE_ID!,
