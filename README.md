@@ -35,17 +35,17 @@ npm install
 ```bash
 cp .env.example .env
 ```
-Vul je AWS inloggegevens en andere benodigde omgevingsvariabelen in.
+Vul de volgende AWS inloggegevens en omgevingsvariabelen in je .env bestand in:
 
--AWS_REGION= ""
--AWS_REGION_TRANSCODE = ""
--AWS_BUCKET= ""
--AWS_ACCESS_KEY_ID= ""
--AWS_SECRET_ACCESS_KEY= ""
--AWS_SNS_TOPIC_ARN= 
--AWS_REKOGNITION_ROLE_ARN= 
--AWS_TRANSCODER_PIPELINE_ID = ""
--AWS_TRANSCODER_PRESET_ID = ""
+AWS_REGION=""
+AWS_REGION_TRANSCODE=""
+AWS_BUCKET=""
+AWS_ACCESS_KEY_ID=""
+AWS_SECRET_ACCESS_KEY=""
+AWS_SNS_TOPIC_ARN=""
+AWS_REKOGNITION_ROLE_ARN=""
+AWS_TRANSCODER_PIPELINE_ID=""
+AWS_TRANSCODER_PRESET_ID=""
 
 4. Start de development server
 ```bash
