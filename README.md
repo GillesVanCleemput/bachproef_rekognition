@@ -59,4 +59,3 @@ Dit project is ontwikkeld als bachelorproef aan de HoGent (2024-2025) door Gille
 ## Begeleiding
 - Promotor: Mevr. K. Samyn
 - Co-promotor: Dhr W. Himpe
-- Departement IT en Digitale Innovatie, HoGent
