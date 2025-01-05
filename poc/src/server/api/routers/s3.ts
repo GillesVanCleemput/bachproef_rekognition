@@ -94,7 +94,7 @@ export const s3Router = createTRPCRouter({
         Video: {
           S3Object: {
             Bucket: bucketName,
-            Name: "TedTalk.mp4",
+            Name: "360p.mp4",
           },
         },
         CollectionId: collectionId,
@@ -160,7 +160,7 @@ export const s3Router = createTRPCRouter({
 
       // Convert scenes to Elastic Transcoder input format
       const transcoderInputs: TranscoderInput[] = scenes.map(([start, end]) => ({
-        Key: "TedTalk.mp4",
+        Key: "Colors.mp4",
         TimeSpan: {
           StartTime: (start / 1000).toString(),
           Duration: ((end - start) / 1000).toString(),
